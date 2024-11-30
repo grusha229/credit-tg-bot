@@ -24,13 +24,14 @@ def format_payment_table(payments):
 def format_payment_for_message(payments):
     """Форматируем список платежей для отправки в сообщение."""
     # Заголовок таблицы
-    table = "Список платежей: \n"
+    table = "Расчёт Список платежей:\n\n"
 
     # Заполняем строки таблицы данными
     for payment in payments:
-        table += f"{payment['month']}) *Платёж:* {payment['payment']:,.2f} руб." \
-                 f" *Проценты:* `{payment['interest_payment']:,.2f}` руб." \
-                 f" *Основной долг:* `{payment['principal_payment']:,.2f}` руб." \
-                 f" *Остаток долга:* `{payment['remaining_balance']:,.2f}` руб.\n\n"
+        table += f"{payment['id']}) {payment['month']: <12}\n" \
+                 f"Платёж: {'': <11}{payment['payment']: >12,.2f} руб.\n" \
+                 f"Проценты: {'': <9}{payment['interest_payment']: >12,.2f} руб.\n" \
+                 f"Основной долг: {'': <4}{payment['principal_payment']: >12,.2f} руб.\n" \
+                 f"Остаток долга: {'': <4}{payment['remaining_balance']: >12,.2f} руб.\n\n"
 
     return table.replace(",", " ")  # Меняем запятые на пробелы для русской локали

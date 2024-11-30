@@ -1,0 +1,9 @@
+services:
+  bot:
+    build: .
+    container_name: credit-bot  # Имя контейнера
+    environment:
+      - TELEGRAM_TOKEN=8063856327:AAHhWSllLaxQbx31ATCFnCEHVYaMspwDoQQ  # Укажите ваш токен Telegram бота
+    volumes:
+      - .:/app  # Монтируем текущую папку в контейнер
+    restart: always  # Контейнер будет перезапускаться в случае сбоя
