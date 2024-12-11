@@ -6,6 +6,10 @@ def get_monthly_payment(amount, annual_rate, months):
     monthly_rate = annual_rate / 12 / 100
     return amount * monthly_rate * (1 + monthly_rate) ** months / ((1 + monthly_rate) ** months - 1)
 
+# amount - сумма кредита 
+# annual_rate - процентная ставка
+# month - кол-во месяцев
+# monthly_rate - годовая процентная ставка в пересчёте на месяцы (разделили на 12)
 def get_credit_details(amount, annual_rate, months):
     # Переводим годовую процентную ставку в месячную
     monthly_rate = annual_rate / 12 / 100
@@ -40,21 +44,3 @@ def get_credit_details(amount, annual_rate, months):
     # Переплата - это разница между общей суммой выплат и основной суммой кредита
     overpayment = total_payment - amount
     return total_payment, overpayment, payments
-
-# # Пример использования
-# AMOUNT = 100000
-# PERCENT = 12
-# MONTH_TERM = 12
-
-# total_payment, overpayment, payments = get_credit_details(AMOUNT, PERCENT, MONTH_TERM)
-# monthly_payment = get_monthly_payment(AMOUNT, PERCENT, MONTH_TERM)
-
-# def print_payments(payments):
-#     for payment in payments:
-#         print(f"Месяц {payment['month']} - Платёж: {payment['payment']}, Проценты: {payment['interest_payment']}, Основной долг: {payment['principal_payment']}, Остаток долга: {payment['remaining_balance']}")
-
-
-# def print_results(total_payment, overpayment, monthly_payment):
-#     print(f"Ежемесячный платёж: {monthly_payment}")
-#     print(f"Общая сумма выплат: {total_payment}")
-#     print(f"Переплата: {overpayment}")
