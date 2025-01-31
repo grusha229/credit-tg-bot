@@ -16,7 +16,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.message.from_user
     context.user_data['user_data'] = user
     print(user)
-    await update.message.reply_text("Добро пожаловать! Давайте рассчитаем ваш кредит.")
+    await update.message.reply_text("Добро пожаловать! Это бот для расчета кредита. Давайте посчитаем ваш кредит.")
     await update.message.reply_text("Введите сумму кредита (например: 100000):")
     return STATE.ASK_AMOUNT
 
@@ -35,8 +35,8 @@ async def ask_amount(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def ask_term(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Обработка срока кредита."""
     text = update.message.text
-    if not text.isdigit():
-        await update.message.reply_text("Пожалуйста, введите корректный срок (например: 12).")
+    if not text.isdigit() or int(text) < 12*30 or int(text) > 1:
+        await update.message.reply_text("Пожалуйста, введите корректный срок (например: 12). От 1 месяца до 30 лет")
         return STATE.ASK_TERM
 
     # Сохраняем срок в context.user_data
@@ -47,8 +47,8 @@ async def ask_term(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def ask_rate(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Обработка процентной ставки."""
     text = update.message.text
-    if not is_valid_number(text):
-        await update.message.reply_text("Пожалуйста, введите корректную ставку (например: 5.5).")
+    if not is_valid_number(text) or int(text) < 100 or int(text) > 1:
+        await update.message.reply_text("Пожалуйста, введите корректную ставку (например: 5.5). Ставка должна быть в диапазоне от 1 до 100 %")
         return STATE.ASK_RATE
 
     # Сохраняем ставку в context.user_data
