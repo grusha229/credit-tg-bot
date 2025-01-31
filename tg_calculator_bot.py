@@ -47,7 +47,7 @@ async def ask_term(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def ask_rate(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Обработка процентной ставки."""
     text = update.message.text
-    if not is_valid_number(text) or int(text) > 100 or int(text) < 1:
+    if not is_valid_number(text) or float(text) > 100 or float(text) < 1:
         await update.message.reply_text("Пожалуйста, введите корректную ставку (например: 5.5). Ставка должна быть в диапазоне от 1 до 100 %")
         return STATE.ASK_RATE
 
